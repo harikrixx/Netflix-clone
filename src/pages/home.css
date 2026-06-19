@@ -1,0 +1,486 @@
+/* ========================= */
+/* GLOBAL */
+/* ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home {
+  background-color: #111;
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========================= */
+/* HERO BANNER */
+/* ========================= */
+
+.hero {
+  height: 85vh;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9),
+    rgba(0, 0, 0, 0.3),
+    transparent
+  );
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    #111,
+    transparent 40%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+/* ========================= */
+/* HERO BUTTONS */
+/* ========================= */
+
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.play {
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.play:hover {
+  background: #e6e6e6;
+}
+
+.more {
+  background: rgba(109, 109, 110, 0.7);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.more:hover {
+  background: rgba(109, 109, 110, 0.5);
+}
+
+/* ========================= */
+/* MOVIE ROWS */
+/* ========================= */
+
+.row {
+  margin-top: 30px;
+  padding: 0 25px;
+}
+
+.row h2 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+/* ========================= */
+/* POSTER SCROLL */
+/* ========================= */
+
+.row-posters {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 20px;
+
+  scrollbar-width: none;
+}
+
+.row-posters::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================= */
+/* MOVIE CARD */
+/* ========================= */
+
+.movie-card {
+  position: relative;
+
+  min-width: 220px;
+  height: 330px;
+
+  border-radius: 10px;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition: all 0.35s ease;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: all 0.35s ease;
+}
+
+/* ========================= */
+/* HOVER EFFECT */
+/* ========================= */
+
+.movie-card:hover {
+  transform: scale(1.12);
+  z-index: 50;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
+}
+
+.movie-card:hover .poster {
+  filter: brightness(0.35);
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+/* ========================= */
+/* OVERLAY */
+/* ========================= */
+
+.movie-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 20px;
+
+  opacity: 0;
+
+  transition: 0.35s ease;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.98),
+    rgba(0, 0, 0, 0.4),
+    transparent
+  );
+}
+
+.movie-overlay h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+/* ========================= */
+/* CARD BUTTONS */
+/* ========================= */
+
+.card-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.card-buttons button {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.card-buttons button:first-child {
+  background: white;
+  color: black;
+}
+
+.card-buttons button:last-child {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.card-buttons button:hover {
+  transform: scale(1.05);
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+footer {
+  margin-top: 50px;
+  border-top: 1px solid #222;
+  color: #777;
+}
+/* ========================= */
+/* NETFLIX MODAL */
+/* ========================= */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+
+  backdrop-filter: blur(6px);
+}
+
+.movie-modal {
+  width: 900px;
+  max-width: 95%;
+
+  background: #181818;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  display: flex;
+
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+
+  animation: modalOpen 0.3s ease;
+}
+
+.movie-modal img {
+  width: 320px;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-content {
+  padding: 35px;
+  flex: 1;
+}
+
+.modal-content h1 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.rating {
+  color: #46d369;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.genre {
+  color: #b3b3b3;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.description {
+  line-height: 1.7;
+  color: #e5e5e5;
+  font-size: 1rem;
+}
+
+.modal-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.play-btn {
+  background: white;
+  color: black;
+
+  border: none;
+  padding: 12px 28px;
+
+  border-radius: 5px;
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.play-btn:hover {
+  background: #e6e6e6;
+}
+
+.close-btn {
+  background: #333;
+  color: white;
+
+  border: none;
+  padding: 12px 28px;
+
+  border-radius: 5px;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  background: #555;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================= */
+/* MOBILE RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .movie-modal {
+    flex-direction: column;
+  }
+
+  .movie-modal img {
+    width: 100%;
+    height: 350px;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .modal-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .hero {
+    padding: 0 25px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+/* ========================= */
+/* TRAILER MODAL */
+/* ========================= */
+
+.trailer-backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.95);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 10000;
+}
+
+.trailer-modal {
+  width: 90%;
+  max-width: 1000px;
+
+  height: 560px;
+
+  position: relative;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
+}
+
+.trailer-close {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(0,0,0,0.7);
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
